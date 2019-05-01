@@ -13,6 +13,7 @@ Get up and running:
 * Copy `init.d/graylog2thehive.service` to `/etc/systemd/system/graylog2thehive.service`
 * Set your Hive API key in `/etc/systemd/system/graylog2thehive.service` for the `HIVE_SECRET_KEY`
 * Set your Hive and Graylog URLs in `config.py`
+* **Optional**: `app/__init__.py`, configure any other IP, hash, URL, or filename fields in place of src_ip and dst_ip to include them as artifacts/observables in your alert
 
 ```
 pip install -r requirements.txt
