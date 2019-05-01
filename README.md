@@ -15,6 +15,7 @@ Get up and running:
 * Set your Hive and Graylog URLs in `config.py`
 
 ```
+pip install -r requirements.txt
 systemctl enable graylog2thehive
 systemctl start graylog2thehive
 ```

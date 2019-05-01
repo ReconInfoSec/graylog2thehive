@@ -1,0 +1,5 @@
+thehive4py
+requests
+json
+logging
+flask
