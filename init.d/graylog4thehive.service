@@ -1,0 +1,19 @@
+[Unit]
+Description=graylog2thehive
+After=multi-user.target
+
+[Service]
+Type=idle
+Environment="HIVE_SECRET_KEY="
+
+WorkingDirectory=/opt/graylog2thehive
+ExecStart=/usr/bin/python app.py runserver
+
+# Connects standard output to /dev/null
+StandardOutput=journal
+
+# Connects standard error to journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
