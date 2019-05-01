@@ -54,7 +54,7 @@ def create_alert():
         message_flattened=flatten_dict(message)
         for key in message_flattened.keys():
             if key != "message" and key != "source":
-                description=description+"\n**"+key+":** "+str(message_flattened[key])+"\n"
+                description=description+"\n**"+key+":** "+json.dumps(message_flattened[key], ensure_ascii=False, encoding="utf8")+"\n"
 
         description=description+'\n\n**Raw Message:** \n\n```\n'+json.dumps(message)+'\n```\n---\n'
 
