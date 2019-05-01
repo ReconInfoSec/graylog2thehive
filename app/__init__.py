@@ -68,7 +68,7 @@ def create_alert():
     # Prepare alert
     sourceRef = str(uuid.uuid4())[0:6]
     alert = Alert(title="Graylog Alert: "+content['stream']['title']+" - "+content['check_result']['result_description'],
-                  tlp=3,
+                  tlp=2,
                   tags=tags,
                   description=content['check_result']['result_description'],
                   type='external',
