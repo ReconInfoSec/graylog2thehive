@@ -61,7 +61,7 @@ def create_alert():
 
             # Use any IPs, hashes, URLs, filenames, etc here in place of src_ip and dst_ip to include them as artifacts/observables in your alert
             if key == "src_ip" or key == "dst_ip":
-                artifacts.append(AlertArtifact(dataType='ip', data=message_flattened[key]))
+                artifacts.append(AlertArtifact(dataType='ip', tags=[key], data=message_flattened[key]))
 
         description=description+'\n\n**Raw Message:** \n\n```\n'+json.dumps(message)+'\n```\n---\n'
 
