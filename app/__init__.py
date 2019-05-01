@@ -41,6 +41,9 @@ def create_alert():
     # Configure API
     api = TheHiveApi(app.config['HIVE_URL'], app.config['API_KEY'])
 
+    # Configure artifacts
+    artifacts = []
+
     # Configure tags
     tags=['graylog']
 
@@ -56,6 +59,10 @@ def create_alert():
             if key != "message" and key != "source":
                 description=description+"\n**"+key+":** "+json.dumps(message_flattened[key], ensure_ascii=False, encoding="utf8")+"\n"
 
+            # Use any IPs, hashes, URLs, filenames, etc here in place of src_ip and dst_ip to include them as artifacts/observables in your alert
+            if key == "src_ip" or key == "dst_ip":
+                artifacts.append(AlertArtifact(dataType='ip', data=message_flattened[key]))
+
         description=description+'\n\n**Raw Message:** \n\n```\n'+json.dumps(message)+'\n```\n---\n'
 
     # Prepare alert
@@ -66,6 +73,7 @@ def create_alert():
                   description=content['check_result']['result_description'],
                   type='external',
                   source='graylog',
+                  artifacts=artifacts,
                   sourceRef=sourceRef)
 
     # Create the alert
