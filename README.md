@@ -2,7 +2,7 @@
 
 Create alerts in [The Hive](https://github.com/TheHive-Project/TheHive) from your [Graylog](https://github.com/Graylog2/graylog2-server/) alerts, to be turned into Hive cases.
 
-Simple Python flask app that runs as a web server, and accepts POST requests from your Graylog `HTTP Alarm Callback` notifications.
+Simple Python flask app that runs as a web server, and accepts POST requests from your Graylog notifications.
 
 ```
 git clone https://github.com/ReconInfoSec/graylog2thehive.git /opt/graylog2thehive
@@ -22,5 +22,6 @@ systemctl enable graylog2thehive
 systemctl start graylog2thehive
 ```
 
-* Runs at https://0.0.0.0:5000, accepts POST requests at `/create_alert`
-* Point your Graylog `HTTP Alarm Callback` to `https://[YOURSERVER].com:5000/create_alert`
+* Runs at https://0.0.0.0:5000, accepts POST requests
+  * Point your Graylog `Legacy Alarm Callback` to `https://[YOURSERVER].com:5000/create_alert`
+  * Point your Graylog `HTTP Notification` to `https://[YOURSERVER].com:5000/create_alert_http`
