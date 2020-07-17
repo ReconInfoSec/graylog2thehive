@@ -55,6 +55,13 @@ def create_alert():
 
         description=description+"\n\n---\n\n**Source:** "+message['source']+"\n\n**Log URL:** "+app.config['GRAYLOG_URL']+"/messages/"+message['index']+"/"+message['id']+"\n\n"
 
+        for field in ["threat_name","threat_tactic","threat_technique","threat_id"]:
+            try:
+                if message["fields"][field] not in tags:
+                    tags.append(message["fields"][field])
+            except:
+                pass
+
         message_flattened=flatten_dict(message)
         for key in message_flattened.keys():
             if key != "message" and key != "source":
@@ -120,6 +127,13 @@ def create_alert_http():
     for message in content['backlog']:
 
         description=description+"\n\n---\n\n**Source:** "+message['source']+"\n\n**Log URL:** "+app.config['GRAYLOG_URL']+"/messages/"+message['index']+"/"+message['id']+"\n\n"
+
+        for field in ["threat_name","threat_tactic","threat_technique","threat_id"]:
+            try:
+                if message["fields"][field] not in tags:
+                    tags.append(message["fields"][field])
+            except:
+                pass
 
         message_flattened=flatten_dict(message)
         for key in message_flattened.keys():
